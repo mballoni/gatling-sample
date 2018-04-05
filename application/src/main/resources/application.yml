@@ -1,0 +1,15 @@
+server:
+  servlet:
+    context-path: /api
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web.exposure.include: '*'
+  endpoint:
+    shutdown.enabled:   true
+
+spring:
+  data:
+    mongodb:
+      database: servicesdb
