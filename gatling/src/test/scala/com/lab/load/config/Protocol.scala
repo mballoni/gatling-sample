@@ -6,9 +6,10 @@ import io.gatling.http.Predef._
 object Protocol {
   val HTTP = http
     .baseURL(Configuration.get("base.url"))
-    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .doNotTrackHeader("1")
-    .acceptLanguageHeader("en-US,en;q=0.5")
+    .inferHtmlResources()
+    .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .acceptEncodingHeader("gzip, deflate")
-    .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
+    .acceptLanguageHeader("en-US,en;q=0.5")
+    .userAgentHeader("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:59.0) Gecko/20100101 Firefox/59.0")
 }

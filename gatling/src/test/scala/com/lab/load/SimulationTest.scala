@@ -19,8 +19,10 @@ class SimulationTest extends Simulation {
       exec(_.set("userId", r.nextInt(1000000)))
 
         .exec(User.create)
-        .pause(2 seconds, 3 seconds)
-        .exec(User.get)
+
+        .randomSwitch(
+          50.0 -> pause(2 seconds, 3 seconds).exec(User.get)
+        )
 
         .exec(session => {
           val str = session.get("foundUserName").asOption[String]
@@ -38,8 +40,6 @@ class SimulationTest extends Simulation {
       rampUsers(100) over (30 seconds),
       rampUsers(100) over (10 seconds),
       atOnceUsers(150)
-      //      nothingFor(30 seconds),
-      //      constantUsersPerSec(200) during (30 seconds)
     )
   )
     .maxDuration(5 minutes)

@@ -1,6 +1,10 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
+
+## Gatling stuff ##
 !gatling/lib/*.jar
+results/
+
 ### STS ###
 .apt_generated
 .classpath
