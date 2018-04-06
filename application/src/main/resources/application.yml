@@ -8,6 +8,14 @@ management:
     web.exposure.include: '*'
   endpoint:
     shutdown.enabled:   true
+  metrics:
+    export:
+      influx:
+        uri: http://localhost:8086
+        db: statistics
+        step: 5s
+        user-name: admin
+        password: admin
 
 spring:
   data:
