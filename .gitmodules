@@ -1,0 +1,3 @@
+[submodule "grafaflux-docker"]
+	path = grafaflux-docker
+	url = git@github.com:mballoni/docker-grafaflux.git
