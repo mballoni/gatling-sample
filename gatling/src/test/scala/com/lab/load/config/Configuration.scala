@@ -1,12 +1,12 @@
 package com.lab.load.config
 
-import java.lang.System.{getProperty, setProperty}
+import java.lang.System.{getProperty, getenv, setProperty}
 import java.nio.file.{Files, Paths}
 
 import scala.Option.apply
 
 object Configuration {
-  var path = apply(getProperty("config.file.path"))
+  var path = apply(getenv("CONFIG_FILE_PATH"))
     .orElse(apply("src/test/resources/default.properties"))
     .map(fileLocation => Paths.get(fileLocation))
     .get
