@@ -19,9 +19,13 @@
     </parent>
 
     <properties>
+        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
+
+        <dependency-check-maven.version>3.1.2</dependency-check-maven.version>
+
+        <owasp-fail-minimum-score>8</owasp-fail-minimum-score>
     </properties>
 
     <dependencies>
@@ -61,6 +65,22 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check-maven.version}</version>
+                <configuration>
+                    <failBuildOnCVSS>${owasp-fail-minimum-score}</failBuildOnCVSS>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
