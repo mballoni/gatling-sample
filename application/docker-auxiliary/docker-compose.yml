@@ -5,3 +5,14 @@ MongoDB:
   volumes:
     - ~/services-data/mongodb/db:/data/db
     - ~/services-data/configdb:/data/configdb
+jenkins:
+  privileged: true
+  image: jenkins:2.60.3-alpine
+  ports:
+    - "8181:8080"
+    - "50000:50000"
+  volumes:
+    - ~/jenkins:/var/jenkins_home
+  net: "host"
+  environment:
+    - JENKINS_OPTS:--httpPort=8181
