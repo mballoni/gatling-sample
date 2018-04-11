@@ -18,6 +18,8 @@ object Configuration {
       setProperty(keyValue.apply(0), keyValue.apply(1))
     })
 
-  def get(propertyName: String) = getProperty(propertyName)
+  def find(propertyName: String) = {
+    apply(getProperty(propertyName))
+  }
 
 }

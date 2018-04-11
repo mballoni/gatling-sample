@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 
 object Protocol {
   val HTTP = http
-    .baseURL(Configuration.get("base.url"))
+    .baseURL(Configuration.find("base.url").get)
     .doNotTrackHeader("1")
     .inferHtmlResources()
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")

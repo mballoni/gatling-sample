@@ -1,6 +1,6 @@
 package com.lab.load
 
-import com.lab.load.config.Protocol
+import com.lab.load.config.{Configuration, Protocol}
 import com.lab.load.user.User
 import io.gatling.core.Predef._
 
@@ -8,6 +8,12 @@ import scala.concurrent.duration._
 
 
 class SimulationTest extends Simulation {
+  val maxDuration: Int = Configuration.find("max.duration.time")
+    .orElse(Option.apply("5"))
+    .map(duration => duration.toInt)
+    .get
+
+  println("MaxDuration " + maxDuration)
 
   val userFeeder = csv("users").circular
 
@@ -42,6 +48,6 @@ class SimulationTest extends Simulation {
       atOnceUsers(150)
     )
   )
-    .maxDuration(5 minutes)
+    .maxDuration(maxDuration minutes)
     .protocols(Protocol.HTTP)
 }
