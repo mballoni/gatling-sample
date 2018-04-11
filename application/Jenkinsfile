@@ -1,0 +1,21 @@
+#!groovy
+
+node {
+
+    stage('Build') {
+        echo "Running ${env.BUILD_ID} [branch:${env.BRANCH_NAME}] on ${env.JENKINS_URL}"
+        deleteDir() //delete the cloned dir before each build
+        checkout scm //Jenkins with multibranch support
+        sh './mvnw clean package'
+    }
+
+    stage('Code Quality') {
+        parallel publish_test_reports: {
+            junit '**/build/test-results/test/*.xml' //publish test reports
+        }
+            owasp_dependency_check: {
+                sh './mvnw dependency-check:check'
+            }
+    }
+
+}
